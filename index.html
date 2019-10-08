@@ -98,7 +98,7 @@
         // Make sure the client is loaded and sign-in is complete before calling this method.
         function execute() {
             return gapi.client.youtube.channels.list({
-                part: ['localizations', 'snippet', 'statistics'],
+                part: 'localizations, snippet, statistics',
                 forUsername: 'techguyweb'
             })
                 .then(function (response) {
