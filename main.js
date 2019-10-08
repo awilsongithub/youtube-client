@@ -42,16 +42,14 @@ function handleClientLoad() {
 // and setup sign in listeners
 function initClient() {
 	alert('inside initclient')
-	gapi.client.init({
-
-	})
+	
     gapi.client
         .init({
             discoveryDocs: DISCOVERY_DOCS,
             clientId: CLIENT_ID,
             scope: SCOPES
         })
-        .then((res) => {
+        .then(() => {
             alert("init callback");
             // listen
             gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
@@ -60,9 +58,9 @@ function initClient() {
             authButton.onclick = handleAuthClick();
             signoutButton.onclick = handleSignoutClick();
         })
-        .catch((err) => {
-            alert("error");
-        });
+        // .catch((err) => {
+        //     alert("error");
+        // });
 }
 
 // update ui sigin in state changes
