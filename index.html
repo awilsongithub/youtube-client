@@ -105,8 +105,6 @@
                 console.log("Response", response.result);
                 var channelInfo = `${response.result.items[0].snippet.description}`;
                 var results = document.getElementById('results').appendChild(channelInfo)
-
-
             },
                 function (err) { console.error("Execute error", err); });
         }
@@ -118,7 +116,7 @@
         <button onclick="authenticate().then(loadClient)">authorize and load</button>
         <button onclick="execute()">execute</button>
     </div>
-    <div class="results">
+    <div id="results">
 
     </div>
 
