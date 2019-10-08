@@ -101,18 +101,26 @@
                 part: 'localizations, snippet, statistics',
                 forUsername: 'techguyweb'
             })
-                .then(function (response) {
-                    // Handle the results here (response.result has the parsed body).
-                    console.log("Response", response);
-                },
-                    function (err) { console.error("Execute error", err); });
+            .then(function (response) {
+                console.log("Response", response.result);
+                var channelInfo = `${response.result.items[0].snippet.description}`;
+                var results = document.getElementById('results').appendChild(channelInfo)
+
+
+            },
+                function (err) { console.error("Execute error", err); });
         }
         gapi.load("client:auth2", function () {
             gapi.auth2.init({ client_id: CLIENT_ID });
         });
     </script>
-    <button onclick="authenticate().then(loadClient)">authorize and load</button>
-    <button onclick="execute()">execute</button>
+    <div style="padding:20px;">
+        <button onclick="authenticate().then(loadClient)">authorize and load</button>
+        <button onclick="execute()">execute</button>
+    </div>
+    <div class="results">
+
+    </div>
 
 </body>
 
