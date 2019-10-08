@@ -7,6 +7,7 @@ const CLIENT_ID =
 const DISCOVERY_DOCS = [
     "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
 ];
+const YOUTUBE_API_KEY = "AIzaSyCLDvzBzRuXgmsA0GUFUpQNdtSG22gqSr4";
 // no write
 const SCOPES = ["https://www.googleapis.com/auth/youtube.readonly"];
 const DEFAULT_CHANNEL = 'techguyweb';
@@ -35,14 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function handleClientLoad() {
 	gapi.load("client:auth2", initClient);
-	alert('handling load')
+	console.log(gapi)
 }
 
 // init api client lib with server/api url, scope, clientid
 // and setup sign in listeners
 function initClient() {
-	alert('inside initclient')
-	
     gapi.client
         .init({
             discoveryDocs: DISCOVERY_DOCS,
@@ -50,17 +49,14 @@ function initClient() {
             scope: SCOPES
         })
         .then(() => {
-            alert("init callback");
-            // listen
+			alert('in then')
+            // Listen for sign in state changes
             gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-            // handle initial
+            // Handle initial sign in state
             updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-            authButton.onclick = handleAuthClick();
-            signoutButton.onclick = handleSignoutClick();
-        })
-        // .catch((err) => {
-        //     alert("error");
-        // });
+            authButton.onclick = handleAuthClick;
+            signoutButton.onclick = handleSignoutClick;
+        });
 }
 
 // update ui sigin in state changes
