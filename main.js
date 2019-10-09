@@ -29,10 +29,10 @@ function oauthSignIn() {
         include_granted_scopes: "true",
         state: "pass-through value"
     };
-    submitRequestViaForm(params);
+    submitRequestViaForm(oauth2Endpoint, params);
 }
 
-function submitRequestViaForm(params) {
+function submitRequestViaForm(oauth2Endpoint, params) {
     var form = document.createElement("form");
     form.setAttribute("method", "GET");
     form.setAttribute("action", oauth2Endpoint);
