@@ -14,6 +14,7 @@ const DEFAULT_CHANNEL = "techguyweb";
 // redirect_uri
 
 /*===========================
+TRY REQUEST, IF FAILS, AUTHORIZE, REDIRECT BACK, TRY AGAIN
  * get hash of url when this page is requested
  parse to see if from oauth 2 server (magic)
  if token try api else start oauth2 flow
@@ -22,8 +23,7 @@ var fragmentString = location.hash.substring(1);
 
 // Parse query string to see if page request is coming from OAuth 2.0 server.
 var params = {};
-var regex = /([^&=]+)=([^&]*)/g,
-    m;
+var regex = /([^&=]+)=([^&]*)/g, m;
 while ((m = regex.exec(fragmentString))) {
     params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
 }
